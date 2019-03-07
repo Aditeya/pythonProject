@@ -67,45 +67,35 @@ def createStrip3(strip3):
 #
 def createStrip4(strip4):
 
+	strip = []
+	createStrip3(strip)
 	i=0
-	while i < 5:
-		blackPixels(strip4,6)
-		redPixels(strip4,1)
-		blackPixels(strip4,4)
-		redPixels(strip4,1)
+	while i < 6:
+		strip.insert(0, strip.pop(59))
 		i+=1
+	strip4 += strip
 
 #
 def createStrip5(strip5):
 
-	blackPixels(strip5,7)
-	
+	strip = []
+	createStrip2(strip)
 	i=0
-	while i < 4:
-		redPixels(strip5,1)
-		blackPixels(strip5,2)
-		redPixels(strip5,1)
-		blackPixels(strip5,8)
+	while i < 6:
+		strip.insert(0, strip.pop(59))
 		i+=1
-	
-	redPixels(strip5,1)
-	blackPixels(strip5,2)
-	redPixels(strip5,1)
-	blackPixels(strip5,1)
+	strip5 += strip
 
 #
 def createStrip6(strip6):
 
-	blackPixels(strip6,8)
-
+	strip = []
+	createStrip1(strip)
 	i=0
-	while i < 4:
-		redPixels(strip6,2)
-		blackPixels(strip6,10)
+	while i < 6:
+		strip.insert(0, strip.pop(59))
 		i+=1
-	
-	redPixels(strip6,2)
-	blackPixels(strip6,2)
+	strip6 += strip
 
 #
 def createStrip(strip):

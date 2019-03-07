@@ -1,0 +1,124 @@
+import sys
+import opc
+import time
+
+ADDRESS = 'localhost:7890'
+client = opc.Client(ADDRESS)
+
+if client.can_connect():
+    print('connected to %s' % ADDRESS)
+else:
+	print('WARNING: could not connect to %s' % ADDRESS)
+	sys.exit()
+
+#
+def blackPixels(strip, n):
+	strip += [(0,0,0)]*n
+	return
+
+#
+def redPixels(strip, n):
+	strip += [(255,0,0)]*n
+	return
+	
+#
+def createStrip1(strip1):
+
+	blackPixels(strip1,2)
+	
+	i=0
+	while i < 4:
+		redPixels(strip1,2)
+		blackPixels(strip1,10)
+		i+=1
+	
+	redPixels(strip1,2)
+	blackPixels(strip1,8)
+
+#
+def createStrip2(strip2):
+
+	blackPixels(strip2,1)
+	
+	i=0
+	while i < 4:
+		redPixels(strip2,1)
+		blackPixels(strip2,2)
+		redPixels(strip2,1)
+		blackPixels(strip2,8)
+		i+=1
+	
+	redPixels(strip2,1)
+	blackPixels(strip2,2)
+	redPixels(strip2,1)
+	blackPixels(strip2,7)
+
+#
+def createStrip3(strip3):
+
+	i=0
+	while i < 5:
+		redPixels(strip3,1)
+		blackPixels(strip3,4)
+		redPixels(strip3,1)
+		blackPixels(strip3,6)
+		i+=1
+
+#
+def createStrip4(strip4):
+
+	i=0
+	while i < 5:
+		blackPixels(strip4,6)
+		redPixels(strip4,1)
+		blackPixels(strip4,4)
+		redPixels(strip4,1)
+		i+=1
+
+#
+def createStrip5(strip5):
+
+	blackPixels(strip5,7)
+	
+	i=0
+	while i < 4:
+		redPixels(strip5,1)
+		blackPixels(strip5,2)
+		redPixels(strip5,1)
+		blackPixels(strip5,8)
+		i+=1
+	
+	redPixels(strip5,1)
+	blackPixels(strip5,2)
+	redPixels(strip5,1)
+	blackPixels(strip5,1)
+
+#
+def createStrip6(strip6):
+
+	blackPixels(strip6,8)
+
+	i=0
+	while i < 4:
+		redPixels(strip6,2)
+		blackPixels(strip6,10)
+		i+=1
+	
+	redPixels(strip6,2)
+	blackPixels(strip6,2)
+
+#
+def createStrip(strip):
+	createStrip1(strip)
+	createStrip2(strip)
+	createStrip3(strip)
+	createStrip4(strip)
+	createStrip5(strip)
+	createStrip6(strip)
+
+strip = []
+createStrip(strip)
+#strip[3*60+0] = (255,255,255)  i = 60r + l
+
+client.put_pixels(strip,channel=255)
+client.put_pixels(strip,channel=255)

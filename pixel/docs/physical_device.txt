@@ -1,0 +1,9 @@
+The installation has 6 led strips suspended in the space between the ground and first floor in the labs in the Ritterman builiding.
+
+Each strip has 60 RGB LEDS. The strands are attatched to a fadecandy controller which enables them to be controlled over USB. The fadecandy controller is plugged into a wifi router with a USB socket which is running the fcserver application. This application enables us to send data to it using the OPC format by connecting to the wifi network the router creates.  This data is then used to control the LED strips.
+
+When all the strips are installed they will appear to be connected in a long line. The first strip will be addressable as the first 60 LEDs, (0-59), the next strip will be LEDs 60-119, going up all the way to 359. If you send to many values the additional ones will have no effect, but will not generate an error. If you send less values then only the ones that you send data for will be updated.
+
+The fcserver will be running at the address 192.168.2.1:7890 once you connect to the wifi network, you will need to set this address in your application 
+
+When you are running the simulator you need to send your data to the address 127.0.0.1:7890 or localhost:7890 (the local loopback address which will resolve to your machine) as both applications will be running on the same machine.

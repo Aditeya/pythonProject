@@ -6,7 +6,7 @@ import opc
 
 client = opc.Client('localhost:7890')
 
-ledColor = [(225,225,225)]*360
+ledColor = [(0,0,0)]*360
 
 BG = list(ledColor)
 
@@ -171,7 +171,7 @@ def heartAnimation(speed, offsetA):    #Play the heart Animtion
 
 heartAnimation(1.5, 0)
 heartAnimation(1, 607)
-heartAnimation(0.1, 25)
+heartAnimation(0.75, 25)
 
 #heartFrame1(30,0)
 #heartFrame4(30,0)

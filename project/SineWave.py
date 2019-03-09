@@ -115,17 +115,26 @@ def moveStrip(strip):
 	strip.insert(240, strip.pop(299))
 	strip.insert(300, strip.pop(359))
 
-strip = []
-createStrip(strip)
-#strip[3*60+0] = (255,255,255)  i = 60r + l
-client.put_pixels(strip,channel=255)
-client.put_pixels(strip,channel=255)
+#
+def run(strip, j):
 
+	i=0
+	while i < j:
+		#client.put_pixels(strip,channel=255)
+		moveStrip(strip)
+		client.put_pixels(strip,channel=255)
+		time.sleep(1/24.0)
+		i+=1
 
-i=0
-while i<400:
-	#client.put_pixels(strip,channel=255)
-	moveStrip(strip)
+#
+def createAndPlayStrip():
+
+	strip = []
+	createStrip(strip)
+	#strip[3*60+0] = (255,255,255)  i = 60r + l
 	client.put_pixels(strip,channel=255)
-	time.sleep(1/60.0)
-	i+=1
+	run(strip, 400)
+	
+createAndPlayStrip()
+
+

@@ -127,14 +127,14 @@ def run(strip, j):
 		i+=1
 
 #
-def createAndPlayStrip():
+def createAndPlayStrip(frames):
 
 	strip = []
 	createStrip(strip)
 	#strip[3*60+0] = (255,255,255)  i = 60r + l
 	client.put_pixels(strip,channel=255)
-	run(strip, 400)
+	run(strip, frames)
 	
-createAndPlayStrip()
+createAndPlayStrip(400)
 
 

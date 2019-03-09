@@ -10,3 +10,13 @@ if client.can_connect():
 else:
 	print('WARNING: could not connect to %s' % ADDRESS)
 	sys.exit()
+
+def createStrip(strip):
+	i=0
+	while i < 360:
+		strip += [(0,0,0)]
+		strip += [(255,0,0)]
+		i+=2
+		
+#
+

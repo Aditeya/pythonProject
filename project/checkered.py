@@ -28,3 +28,12 @@ def moveStrip(strip):
 	strip.insert(240, strip.pop(299))
 	strip.insert(300, strip.pop(359))
 	
+def run(strip, j):
+
+	i=0
+	while i < j:
+		#client.put_pixels(strip,channel=255)
+		moveStrip(strip)
+		client.put_pixels(strip,channel=255)
+		time.sleep(1/24.0)
+		i+=1

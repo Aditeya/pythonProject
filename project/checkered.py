@@ -11,12 +11,26 @@ else:
 	print('WARNING: could not connect to %s' % ADDRESS)
 	sys.exit()
 
-def createStrip(strip):
+def createStrip1(strip):
 	i=0
-	while i < 360:
+	while i < 60:
 		strip += [(0,0,0)]
 		strip += [(255,0,0)]
 		i+=2
+		
+def createStrip2(strip):
+	i=0
+	while i < 60:
+		strip += [(255,0,0)]
+		strip += [(0,0,0)]
+		i+=2
+		
+def createStrip(strip):
+	i=0
+	while i < 6:
+		createStrip1(strip)
+		createStrip2(strip)
+		i+=1
 		
 #
 
@@ -35,7 +49,7 @@ def run(strip, j):
 		#client.put_pixels(strip,channel=255)
 		moveStrip(strip)
 		client.put_pixels(strip,channel=255)
-		time.sleep(1/24.0)
+		time.sleep(1/5.0)
 		i+=1
 
 #		
@@ -47,4 +61,4 @@ def createAndPlayStrip(frames):
 	client.put_pixels(strip,channel=255)
 	run(strip, frames)
 	
-createAndPlayStrip(400)
+createAndPlayStrip(40)

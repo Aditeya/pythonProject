@@ -123,7 +123,7 @@ def run(strip, j):
 		#client.put_pixels(strip,channel=255)
 		moveStrip(strip)
 		client.put_pixels(strip,channel=255)
-		time.sleep(1/24.0)
+		time.sleep(0.025)
 		i+=1
 
 #

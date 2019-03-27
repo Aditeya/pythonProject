@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 
 import time
 
@@ -12,41 +11,104 @@ ledColor = [(0,0,0)]*360
 
 BG = list(ledColor)
 
+client.put_pixels(ledColor)
 
-#ledColor[5] = (255,255,0)
+ledEnum = enumerate(ledColor)
 
-def verLineAnim(Up, loc, r, g, b)
+def lineVer(amt):  #Creating the vertical line
 	
-	if Up = 0:
-		for x in range(0, 5) 
-			ledColor[x*60+loc] = (r, g, b)
-			ledColor[x*60+loc+1] = (r, g, b)
-			ledColor[x*60+loc+2] = (r, g, b)
-			client.put_pixels(ledColor)
-			time.sleep(0.1)
-			
-	if Up = 1:
-		for x in range(0, 5) 
-			ledColor[(5-x)*60+loc] = (r, g, b)
-			ledColor[(5-x)*60+loc+1] = (r, g, b)
-			ledColor[(5-x)*60+loc+2] = (r, g, b)
-			client.put_pixels(ledColor)
-			time.sleep(0.1)	
+	for y in range(0, 6):
+		ledColor[(5-y)*60+15+amt] = (255,255,255)
+		client.put_pixels(ledColor)
+		time.sleep(0.075)
+		
+	return
 
-def horLineAnim(R, loc, r, g, b)
+def lineHor(amt):  #Creating the horizontal line
 	
-	if R = 0:
-		for x in range(0, 59) 
-			ledColor[loc*60+x] = (r, g, b)
-			client.put_pixels(ledColor)
-			time.sleep(0.01)
+	for x in range(0, 60):
+		ledColor[(amt+3)*60+x] = (255,255,255)
+		client.put_pixels(ledColor)
+		time.sleep(0.01)
+		
+	return
 	
-	if R = 0:
-		for x in range(0, 59) 
-			ledColor[loc*60+(59-x)] = (r, g, b)
-			client.put_pixels(ledColor)
-			time.sleep(0.01)
-			
-threading.Thread(target=verLineAnim, args=(0, 0, 255, 255, 255,)).start()		
+def lineVerEX(amt):   #Expanding the vertical line
 
-threading.Thread(target=verLineAnim, args=(0, 6, 255, 255, 255,)).start()		
+	for y in range(0, 6):
+		ledColor[(5-y)*60+15+amt] = (255,255,255)
+	
+	return
+	
+	
+def lineHorEX(amt):   #Expanding the horizontal line
+
+	for x in range(0, 60):
+		ledColor[(4+amt)*60+x] = (255,255,255)
+
+	return
+
+
+def BGtransAnim():
+
+	threading.Thread(target=lineVer, args=(0,)).start()
+	time.sleep(0.005)
+	threading.Thread(target=lineVer, args=(31,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(0,)).start()
+	time.sleep(0.5)
+	
+	threading.Thread(target=lineVer, args=(30,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(-2,)).start()
+	time.sleep(0.005)
+	threading.Thread(target=lineVer, args=(9,)).start()
+	time.sleep(0.75)
+	
+	threading.Thread(target=lineVer, args=(15,)).start()
+	time.sleep(0.005)
+	threading.Thread(target=lineVer, args=(21,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(1,)).start()
+	time.sleep(0.5)
+	
+	threading.Thread(target=lineVer, args=(-7,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(-4,)).start()
+	time.sleep(0.75)
+	
+	threading.Thread(target=lineVer, args=(27,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(-3,)).start()
+	time.sleep(0.75)
+	
+	threading.Thread(target=lineVer, args=(39,)).start()
+	time.sleep(0.01)
+	threading.Thread(target=lineHor, args=(-1,)).start()
+
+BGtransAnim()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

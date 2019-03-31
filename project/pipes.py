@@ -5,6 +5,7 @@ import random
 #TODO
 #prevent the pipe from backtracking ie nextDirection shouldn't be same value in two loop iterations
 #Naw it's cool I did it 4 u :D
+#Yeah but i did it better and smaller
 
 ADDRESS = 'localhost:7890'
 client = opc.Client(ADDRESS)
@@ -13,7 +14,6 @@ while True:
 	strip = [(0,0,0)]*360
 	client.put_pixels(strip)
 	time.sleep(1/30.0)
-	lastDirection = 1
 	
 	for i in range(15):
 		start = True
@@ -26,16 +26,20 @@ while True:
 		client.put_pixels(strip)
 		time.sleep(1/30.0)
 		
+		lastDirection = 0
+		
 		while start:
 			growth = True
 			growx = True
-			nextDirection = random.randint(1,4)
 			
-			while nextDirection == lastDirection or nextDirection == (lastDirection+2) or nextDirection == (lastDirection-2):  #Checks if either same direction or opposite dir
+			while True:
 				nextDirection = random.randint(1,4)
 				
-			lastDirection = nextDirection	
+				if nextDirection != lastDirection:
+					break;
 			
+			lastDirection = nextDirection
+		
 			if nextDirection == 1:
 				if y-1 >= 0:
 					y -= 1

@@ -8,7 +8,7 @@ import threading
 
 client = opc.Client('localhost:7890')
 
-ledColor = [()]*360
+ledColor = [(0,0,0)]*360
 
 BG = list(ledColor)
 
@@ -78,7 +78,3 @@ BGTransAnim(254, 209, 25, 0, 0, 0)
 #threading.Thread(target=verLineAnim, args=(0, 6, 255, 255, 255,)).start()	
 #time.sleep(0.01)
 #threading.Thread(target=horLineAnim, args=(0, 0, 0, 255, 255,)).start()	
-
-
-
-

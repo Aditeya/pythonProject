@@ -1,9 +1,8 @@
 
 import time
-
 import opc
-
 import threading
+
 
 client = opc.Client('localhost:7890')
 
@@ -87,28 +86,3 @@ def BGtransAnim():
 	threading.Thread(target=lineHor, args=(-1,)).start()
 
 BGtransAnim()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	

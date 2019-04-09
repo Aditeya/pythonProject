@@ -1,28 +1,33 @@
 import time
 import opc
-
-import SineWave
+import ledutils
 
 def pattern1(frame):
+	colour1 = (255,178,0)
+	colour2 = (0,0,0)
+	
 	for y in range(6):
 		for x in range(4):
-			SineWave.redPixels(frame,1)
-			SineWave.blackPixels(frame,11)
+			ledutils.addPixels(frame, 1, colour1) # red
+			ledutils.addPixels(frame, 11, colour2)  # black
 		
-		SineWave.redPixels(frame,1)
-		SineWave.blackPixels(frame,11-y)
-		SineWave.blackPixels(frame,y+1)
+		ledutils.addPixels(frame, 1, colour1)  # red
+		ledutils.addPixels(frame, 11-y, colour2) # black
+		ledutils.addPixels(frame, y+1, colour2)  # black
 		
 def pattern2(frame):
+	colour1 = (225,0,255)
+	colour2 = (0,0,0)
+	
 	for y in range(6):
-		SineWave.blackPixels(frame,11-y)
+		ledutils.addPixels(frame, 11-y, colour2) # black
 		
 		for x in range(4):
-			SineWave.redPixels(frame,1)
-			SineWave.blackPixels(frame,11)
+			ledutils.addPixels(frame, 1, colour1) # red
+			ledutils.addPixels(frame, 11, colour2)  # black
 		
-		SineWave.redPixels(frame,1)
-		SineWave.blackPixels(frame,y)		
+		ledutils.addPixels(frame, 1, colour1) # red
+		ledutils.addPixels(frame, y, colour2)	  # black
 
 def moveRight(strip):
 	strip.insert(0, strip.pop(59))
@@ -40,23 +45,25 @@ def moveLeft(strip):
 	strip.insert(299, strip.pop(240))
 	strip.insert(359, strip.pop(300))
 
-ADDRESS = 'localhost:7890'
-client = opc.Client(ADDRESS)
-
-frame1 = []
-frame2 = []
-
-pattern1(frame1)
-pattern2(frame2)
-
-SineWave.createAndPlayStrip(50)
-
-while True:
-	client.put_pixels(frame1, channel=225)
-	client.put_pixels(frame1, channel=225)
-	moveLeft(frame1)
-	time.sleep(0.05)
-	client.put_pixels(frame2, channel=225)
-	client.put_pixels(frame2, channel=225)
-	moveRight(frame2)
-	time.sleep(0.05)
+# Each frame is 0.1s
+def interlacedWeave(frames):
+	ADDRESS = 'localhost:7890'
+	client = opc.Client(ADDRESS)
+	
+	frame1 = []
+	frame2 = []
+	
+	pattern1(frame1)
+	pattern2(frame2)
+	
+	i = 0
+	while i < frames:
+		client.put_pixels(frame1, channel=225)
+		client.put_pixels(frame1, channel=225)
+		moveLeft(frame1)
+		time.sleep(0.05)
+		client.put_pixels(frame2, channel=225)
+		client.put_pixels(frame2, channel=225)
+		moveRight(frame2)
+		time.sleep(0.05)
+		i+=1

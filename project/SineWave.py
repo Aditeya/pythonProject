@@ -1,6 +1,7 @@
 #import sys
 import opc
 import time
+import ledutils
 
 """
 ADDRESS = 'localhost:7890'
@@ -15,12 +16,12 @@ else:
 
 #
 def blackPixels(strip, n):
-	strip += [(0,0,0)]*n
+	ledutils.addPixels(strip, n, (0,0,0))
 	return
 
 #
 def redPixels(strip, n):
-	strip += [(255,0,0)]*n
+	ledutils.addPixels(strip, n, (50,205,50))
 	return
 	
 #
@@ -137,6 +138,6 @@ def createAndPlayStrip(frames):
 	client.put_pixels(strip,channel=255)
 	run(strip, frames)
 	
-#createAndPlayStrip(400)
+createAndPlayStrip(400)
 
 

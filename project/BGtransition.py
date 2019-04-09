@@ -71,7 +71,6 @@ def BGTransAnim(r1, g1, b1, r2, g2, b2):
 
 	return
 
-BGTransAnim(254, 209, 25, 0, 0, 0)	
 
 		
 #time.sleep(0.01)

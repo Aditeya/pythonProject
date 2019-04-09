@@ -1,15 +1,5 @@
-import sys
 import opc
 import time
-
-ADDRESS = 'localhost:7890'
-client = opc.Client(ADDRESS)
-
-if client.can_connect():
-    print('connected to %s' % ADDRESS)
-else:
-	print('WARNING: could not connect to %s' % ADDRESS)
-	sys.exit()
 
 def createStrip1(strip):
 	i=0
@@ -42,7 +32,7 @@ def moveStrip(strip):
 	strip.insert(240, strip.pop(299))
 	strip.insert(300, strip.pop(359))
 	
-def run(strip, j):
+def run(strip, j, client):
 
 	i=0
 	while i < j:
@@ -54,11 +44,11 @@ def run(strip, j):
 
 #		
 def createAndPlayStrip(frames):
-
+	ADDRESS = 'localhost:7890'
+	client = opc.Client(ADDRESS)
+	
 	strip = []
 	createStrip(strip)
 	#strip[3*60+0] = (255,255,255)  i = 60r + l
 	client.put_pixels(strip,channel=255)
-	run(strip, frames)
-	
-createAndPlayStrip(40)
+	run(strip, frames, client)

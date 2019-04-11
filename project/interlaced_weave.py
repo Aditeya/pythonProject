@@ -67,3 +67,5 @@ def interlacedWeave(frames):
 		moveRight(frame2)
 		time.sleep(0.05)
 		i+=1
+		
+	return frame1

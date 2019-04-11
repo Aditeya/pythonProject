@@ -52,3 +52,4 @@ def createAndPlayStrip(frames):
 	#strip[3*60+0] = (255,255,255)  i = 60r + l
 	client.put_pixels(strip,channel=255)
 	run(strip, frames, client)
+	return strip

@@ -79,3 +79,5 @@ def playPipes(iterations):
 						y-=1
 					elif growx and nextDirection==3:
 						y+=1
+						
+	return strip

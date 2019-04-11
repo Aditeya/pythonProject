@@ -8,16 +8,16 @@ import threading
 
 client = opc.Client('localhost:7890')
 
-ledColor = [(0,0,0)]*360
+#ledColor = [(0,0,0)]*360
 
-BG = list(ledColor)
+#BG = list(ledColor)
 
 #client.put_pixels(ledColor)
 
 
 #ledColor[5] = (255,255,0)
 
-def verLineAnim(Up, loc, r, g, b):
+def verLineAnim(Up, loc, r, g, b, ledColor):		#Animation for vertical line
 	
 	if Up == 0:
 		for x in range(0, 6):
@@ -37,7 +37,7 @@ def verLineAnim(Up, loc, r, g, b):
 			
 	return
 
-def horLineAnim(R, loc, r, g, b):
+def horLineAnim(R, loc, r, g, b, ledColor):		#Animation for horizontal line
 	
 	if R == 0:
 		for x in range(0, 60):
@@ -55,18 +55,18 @@ def horLineAnim(R, loc, r, g, b):
 
 
 
-def BGTransAnim(r1, g1, b1, r2, g2, b2):
+def BGTransAnim(r1, g1, b1, r2, g2, b2, ledColor):		#Plays the animation
 
 	for i in range(0, 60, 6):
-		threading.Thread(target=verLineAnim, args=(0, i, r1, g1, b1,)).start()
-		threading.Thread(target=verLineAnim, args=(1, i+3, r1-25, g1-25, b1-25,)).start()
+		threading.Thread(target=verLineAnim, args=(0, i, r1, g1, b1, ledColor,)).start()
+		threading.Thread(target=verLineAnim, args=(1, i+3, r1-25, g1-25, b1-25, ledColor,)).start()
 		time.sleep(0.1)
 		
 	time.sleep(1.5)
 
 	for i in range(0, 6, 2):
-		threading.Thread(target=horLineAnim, args=(0, i, r2, g2, b2,)).start()
-		threading.Thread(target=horLineAnim, args=(1, i+1, r2, g2, b2,)).start()
+		threading.Thread(target=horLineAnim, args=(0, i, r2, g2, b2, ledColor,)).start()
+		threading.Thread(target=horLineAnim, args=(1, i+1, r2, g2, b2, ledColor,)).start()
 		time.sleep(0.1)
 
 	return

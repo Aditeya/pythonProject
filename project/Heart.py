@@ -169,9 +169,13 @@ def heartAnimation(speed, offsetA):    #Play the heart Animtion
 	
 	time.sleep((1/30.0)/speed)
 
-heartAnimation(1.5, 0)
-heartAnimation(1, 607)
-heartAnimation(0.75, 25)
+def heartAnimPlay():
+
+	heartAnimation(1.5, 0)
+	heartAnimation(1, 607)
+	heartAnimation(0.75, 25)
+
+	return ledColor
 
 #heartFrame1(30,0)
 #heartFrame4(30,0)
